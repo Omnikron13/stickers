@@ -4,14 +4,11 @@ import "github.com/charmbracelet/lipgloss"
 
 // FlexBox responsive box grid insipred by CSS flexbox
 type FlexBox struct {
+   base;
+
 	// style to apply to the gridbox itself
-	style         lipgloss.Style
 	styleAncestor bool
 
-	// width is fixed width of the box
-	width int
-	// height is fixed height of the box
-	height int
 	// fixedRowHeight will lock row height to a number, this disabless responsivness
 	fixedRowHeight int
 
@@ -25,12 +22,14 @@ type FlexBox struct {
 // New initialize FlexBox object with defaults
 func New(width, height int) *FlexBox {
 	r := &FlexBox{
-		width:           width,
-		height:          height,
 		fixedRowHeight:  -1,
-		style:           lipgloss.NewStyle(),
 		recalculateFlag: false,
 	}
+
+   r.style = lipgloss.NewStyle()
+   r.height = width
+   r.width = height
+
 	return r
 }
 
@@ -54,9 +53,11 @@ func (r *FlexBox) StylePassing(value bool) *FlexBox {
 func (r *FlexBox) NewRow() *Row {
 	rw := &Row{
 		cells: []*Cell{},
-		width: r.width,
-		style: lipgloss.NewStyle(),
 	}
+
+	rw.width = r.width
+	rw.style = lipgloss.NewStyle()
+
 	return rw
 }
 
@@ -235,26 +236,3 @@ func (r *FlexBox) getRowMatrix() (rowMatrix [][]int) {
 	return rowMatrix
 }
 
-func (r *FlexBox) getContentWidth() int {
-	return r.getMaxWidth() - r.getExtraWidth()
-}
-
-func (r *FlexBox) getContentHeight() int {
-	return r.getMaxHeight() - r.getExtraHeight()
-}
-
-func (r *FlexBox) getMaxWidth() int {
-	return r.width
-}
-
-func (r *FlexBox) getMaxHeight() int {
-	return r.height
-}
-
-func (r *FlexBox) getExtraWidth() int {
-	return r.style.GetHorizontalMargins() + r.style.GetHorizontalBorderSize()
-}
-
-func (r *FlexBox) getExtraHeight() int {
-	return r.style.GetVerticalMargins() + r.style.GetVerticalBorderSize()
-}

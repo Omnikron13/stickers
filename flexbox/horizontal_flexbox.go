@@ -4,14 +4,10 @@ import "github.com/charmbracelet/lipgloss"
 
 // HorizontalFlexBox responsive box grid insipred by CSS flexbox
 type HorizontalFlexBox struct {
-	// style to apply to the gridbox itself
-	style         lipgloss.Style
-	styleAncestor bool
+   base;
 
-	// width is fixed width of the box
-	width int
-	// height is fixed height of the box
-	height int
+	// style to apply to the gridbox itself
+	styleAncestor bool
 
 	// fixedColumnWidth will lock column width to a number, this disabless responsivness
 	fixedColumnWidth int
@@ -26,12 +22,14 @@ type HorizontalFlexBox struct {
 // NewHorizontal initialize a HorizontalFlexBox object with defaults
 func NewHorizontal(width, height int) *HorizontalFlexBox {
 	r := &HorizontalFlexBox{
-		width:            width,
-		height:           height,
 		fixedColumnWidth: -1,
-		style:            lipgloss.NewStyle(),
 		recalculateFlag:  false,
 	}
+
+   r.style = lipgloss.NewStyle()
+   r.height = width
+   r.width = height
+
 	return r
 }
 
@@ -55,9 +53,11 @@ func (r *HorizontalFlexBox) StylePassing(value bool) *HorizontalFlexBox {
 func (r *HorizontalFlexBox) NewColumn() *Column {
 	rw := &Column{
 		cells: []*Cell{},
-		width: r.width,
-		style: lipgloss.NewStyle(),
 	}
+
+	rw.width = r.width
+	rw.style = lipgloss.NewStyle()
+
 	return rw
 }
 

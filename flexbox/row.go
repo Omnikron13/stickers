@@ -10,14 +10,12 @@ import (
 // of the construction as it takes all of the needed ratio information from the cell slice
 // rows are stacked vertically
 type Row struct {
+   base;
+
 	// style of the row
-	style         lipgloss.Style
 	styleAncestor bool
 
 	cells []*Cell
-
-	height int
-	width  int
 
 	// recalculateFlag indicates if next render should make calculations regarding
 	// the cells objects height/width
@@ -211,30 +209,6 @@ func (r *Row) getCellWidthMatrix() (cellWidthMatrix []int) {
 		cellWidthMatrix = append(cellWidthMatrix, cell.ratioX)
 	}
 	return cellWidthMatrix
-}
-
-func (r *Row) getContentWidth() int {
-	return r.getMaxWidth() - r.getExtraWidth()
-}
-
-func (r *Row) getContentHeight() int {
-	return r.getMaxHeight() - r.getExtraHeight()
-}
-
-func (r *Row) getMaxWidth() int {
-	return r.width
-}
-
-func (r *Row) getMaxHeight() int {
-	return r.height
-}
-
-func (r *Row) getExtraWidth() int {
-	return r.style.GetHorizontalMargins() + r.style.GetHorizontalBorderSize()
-}
-
-func (r *Row) getExtraHeight() int {
-	return r.style.GetVerticalMargins() + r.style.GetVerticalBorderSize()
 }
 
 func (r *Row) copy() Row {
