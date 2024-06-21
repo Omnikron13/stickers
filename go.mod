@@ -1,5 +1,7 @@
 module github.com/omnikron13/stickers
 
+retract v1.3.2
+
 go 1.18
 
 require (
