@@ -1,10 +1,10 @@
 module github.com/omnikron13/stickers
 
-retract v1.3.2
-
 go 1.18
 
 require (
+   github.com/omnikron13/stickers/flexbox v1.3.3
+   github.com/omnikron13/stickers/table v1.3.3
 	github.com/charmbracelet/bubbletea v0.20.0
 	github.com/charmbracelet/lipgloss v0.6.0
 	github.com/gocarina/gocsv v0.0.0-20211203214250-4735fba0c1d9
