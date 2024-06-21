@@ -8,6 +8,8 @@ import (
 // A FlexBox stacks cells horizonally.
 // A HorizontalFlexBox stacks cells vertically. (controverse, isn't it?)
 type Cell struct {
+	base;
+
 	// style of the cell, when rendering it will inherit the style of the parent row
 	style lipgloss.Style
 	// id of the cell, if not set it will default to the index in the row
@@ -108,28 +110,12 @@ func (r *Cell) render(inherited ...lipgloss.Style) string {
 	return s.Render(r.content)
 }
 
-func (r *Cell) getContentWidth() int {
-	return r.getMaxWidth() - r.getExtraWidth()
-}
-
-func (r *Cell) getContentHeight() int {
-	return r.getMaxHeight() - r.getExtraHeight()
-}
-
 func (r *Cell) getMaxWidth() int {
 	return r.width
 }
 
 func (r *Cell) getMaxHeight() int {
 	return r.height
-}
-
-func (r *Cell) getExtraWidth() int {
-	return r.style.GetHorizontalFrameSize()
-}
-
-func (r *Cell) getExtraHeight() int {
-	return r.style.GetVerticalFrameSize()
 }
 
 func (r *Cell) copy() Cell {
