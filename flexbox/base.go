@@ -4,23 +4,31 @@ import "github.com/charmbracelet/lipgloss"
 
 type base struct {
 	style lipgloss.Style
-	Width   int
-	Height  int
+	width   int
+	height  int
 }
 
-func (r *Cell) getContentWidth() int {
+func (r *base) getContentWidth() int {
 	return r.getMaxWidth() - r.getExtraWidth()
 }
 
-func (r *Cell) getContentHeight() int {
+func (r *base) getContentHeight() int {
 	return r.getMaxHeight() - r.getExtraHeight()
 }
 
-func (r *Cell) getExtraWidth() int {
+func (r *base) getExtraWidth() int {
 	return r.style.GetHorizontalFrameSize()
 }
 
-func (r *Cell) getExtraHeight() int {
+func (r *base) getExtraHeight() int {
 	return r.style.GetVerticalFrameSize()
+}
+
+func (r *base) getMaxWidth() int {
+	return r.width
+}
+
+func (r *base) getMaxHeight() int {
+	return r.height
 }
 

@@ -10,8 +10,6 @@ import (
 type Cell struct {
 	base;
 
-	// style of the cell, when rendering it will inherit the style of the parent row
-	style lipgloss.Style
 	// id of the cell, if not set it will default to the index in the row
 	id string
 
@@ -30,14 +28,17 @@ type Cell struct {
 
 // NewCell initialize FlexBoxCell object with defaults
 func NewCell(ratioX, ratioY int) *Cell {
-	return &Cell{
-		style:    lipgloss.NewStyle(),
+   cell := &Cell{
 		ratioX:   ratioX,
 		ratioY:   ratioY,
 		minWidth: 0,
-		Width:    0,
-		Height:   0,
 	}
+
+   cell.style = lipgloss.NewStyle()
+   cell.height = 0
+   cell.width = 0
+
+   return cell
 }
 
 // SetID sets the cells ID
@@ -106,14 +107,6 @@ func (r *Cell) render(inherited ...lipgloss.Style) string {
 		Width(r.getContentWidth()).MaxWidth(r.getMaxWidth()).
 		Height(r.getContentHeight()).MaxHeight(r.getMaxHeight())
 	return s.Render(r.content)
-}
-
-func (r *Cell) getMaxWidth() int {
-	return r.width
-}
-
-func (r *Cell) getMaxHeight() int {
-	return r.height
 }
 
 func (r *Cell) copy() Cell {
