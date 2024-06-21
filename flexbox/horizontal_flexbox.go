@@ -27,8 +27,8 @@ func NewHorizontal(width, height int) *HorizontalFlexBox {
 	}
 
    r.style = lipgloss.NewStyle()
-   r.height = width
-   r.width = height
+   r.height = height
+   r.width = width
 
 	return r
 }

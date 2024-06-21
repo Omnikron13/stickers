@@ -27,8 +27,8 @@ func New(width, height int) *FlexBox {
 	}
 
    r.style = lipgloss.NewStyle()
-   r.height = width
-   r.width = height
+   r.height = height
+   r.width = width
 
 	return r
 }
