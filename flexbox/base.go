@@ -4,6 +4,8 @@ import "github.com/charmbracelet/lipgloss"
 
 type base struct {
 	style lipgloss.Style
+	Width   int
+	Height  int
 }
 
 func (r *Cell) getContentWidth() int {

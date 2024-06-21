@@ -25,8 +25,6 @@ type Cell struct {
 	// minHeigth minimal heigth of the cell
 	minHeigth int
 
-	width   int
-	height  int
 	content string
 }
 
@@ -37,8 +35,8 @@ func NewCell(ratioX, ratioY int) *Cell {
 		ratioX:   ratioX,
 		ratioY:   ratioY,
 		minWidth: 0,
-		width:    0,
-		height:   0,
+		Width:    0,
+		Height:   0,
 	}
 }
 
