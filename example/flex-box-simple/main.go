@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/76creates/stickers/flexbox"
+	"github.com/omnikron13/stickers/flexbox"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 )
